@@ -1,4 +1,4 @@
-update=Sun Sep  6 00:00:25 2015
+update=Mon Sep  7 19:10:08 2015
 version=1
 last_client=kicad
 [pcbnew]
@@ -69,9 +69,11 @@ LibName37=/home/kleinjt/repos/balloon/hardware/lib/tcxo
 LibName38=/home/kleinjt/repos/balloon/hardware/lib/teensy_3
 LibName39=/home/kleinjt/repos/balloon/hardware/lib/vreg_7805ish
 LibName40=/home/kleinjt/repos/balloon/hardware/lib/antenna_2port
-LibName41=/home/kleinjt/repos/wireless_sensor_networks/project/lib/0896bm15a0001
-LibName42=/home/kleinjt/repos/wireless_sensor_networks/project/lib/cc110l
-LibName43=/home/kleinjt/repos/wireless_sensor_networks/project/lib/lsm6ds3
-LibName44=/home/kleinjt/repos/wireless_sensor_networks/project/lib/msp430fr5739
-LibName45=/home/kleinjt/repos/wireless_sensor_networks/project/lib/tc77
-LibName46=/home/kleinjt/repos/wireless_sensor_networks/project/lib/mcp1700
+LibName41=/home/kleinjt/repos/ee646_wireless_sensor_networks_project/lib/0896bm15a0001
+LibName42=/home/kleinjt/repos/ee646_wireless_sensor_networks_project/lib/cc110l
+LibName43=/home/kleinjt/repos/ee646_wireless_sensor_networks_project/lib/lsm6ds3
+LibName44=/home/kleinjt/repos/ee646_wireless_sensor_networks_project/lib/mcp1700
+LibName45=/home/kleinjt/repos/ee646_wireless_sensor_networks_project/lib/msp430fr5739
+LibName46=/home/kleinjt/repos/ee646_wireless_sensor_networks_project/lib/tc77
+LibName47=/home/kleinjt/repos/ee646_wireless_sensor_networks_project/lib/box
+LibName48=/home/kleinjt/repos/ee646_wireless_sensor_networks_project/lib/s01-50250500

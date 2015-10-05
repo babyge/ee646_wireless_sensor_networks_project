@@ -2281,8 +2281,6 @@ Wire Wire Line
 	10300 2000 10650 2000
 NoConn ~ 6950 9050
 NoConn ~ 13550 3150
-Text Notes 7350 1350 0    60   ~ 0
-TODO:\nreverse battery protection..\nsilkscreen markings
 Wire Wire Line
 	5550 4050 5700 4050
 Wire Wire Line
@@ -2322,4 +2320,6 @@ Wire Wire Line
 	11450 7700 11450 7800
 Text Notes 11550 7900 0    60   ~ 0
 reverse polarity protection
+Text Notes 6850 1150 0    60   ~ 0
+ERRATA:\nflip debug connector\nmove battery holder to avoid interfering with mounting\nadd picture and notes to bottom side
 $EndSCHEMATC

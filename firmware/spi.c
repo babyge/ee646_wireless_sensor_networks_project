@@ -5,7 +5,7 @@
 
 void init_spi(void)
 {
-    SPISEL |= SCK | MOSI | MISO;
+    //SPISEL |= SCK | MOSI | MISO;
 
     UCB0CTL1 |= (UCSWRST); // disable SPI while altering settings
     
@@ -15,7 +15,7 @@ void init_spi(void)
 
     UCB0CTL1 |= UCSSEL_2; // SMCLK clock select, master mode (p457)
 
-    UCB0CTL0 = UCMST + UCSYNC + UCCKPH; // SPI master, synchronous mode, LSB first, 3 pin SPI, rising edge  (p457)
+    UCB0CTL0 = UCMST | UCSYNC | UCCKPH; // SPI master, synchronous mode, LSB first, 3 pin SPI, rising edge  (p457)
 
     UCB0CTL1 &= ~(UCSWRST); // disable software reset enable
 

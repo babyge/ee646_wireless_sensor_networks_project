@@ -1,6 +1,6 @@
-#define LEDOUT P1OUT
-#define LEDDIR P1DIR
-#define LED1 (1 << 0)
+#define LEDOUT PJOUT
+#define LEDDIR PJDIR
+#define LED1 (1 << 1)
 
 // uart pins
 #define UARTOUT P2OUT
@@ -31,12 +31,12 @@
 #define SWADDR4_DIR P1DIR
 
 #define SWADDR5_PIN (1 << 4)
-#define SWADDR0_OUT P1OUT
-#define SWADDR0_DIR P1DIR
+#define SWADDR5_OUT P1OUT
+#define SWADDR5_DIR P1DIR
 
 #define SWDEBUG_PIN (1 << 5)
-#define SWADDR0_OUT P3OUT
-#define SWADDR0_DIR P3DIR
+#define SWDEBUG_OUT P3OUT
+#define SWDEBUG_DIR P3DIR
 
 #define SWAUX0_PIN (1 << 2)
 #define SWAUX0_OUT PJOUT
@@ -47,7 +47,7 @@
 #define LED0_DIR PJDIR
 
 
-// cc110L pins
+// cc110L pins, SPI on UB0
 #define CC_SCK_PIN (1 << 2)
 #define CC_SCK_OUT P2OUT
 #define CC_SCK_DIR P2DIR
@@ -58,10 +58,10 @@
 #define CC_MISO_DIR P1DIR
 #define CC_MISO_SEL P1SEL0
 
-#define CC_MISO_PIN (1 << 6)
-#define CC_MISO_OUT P1OUT
-#define CC_MISO_DIR P1DIR
-#define CC_MISO_SEL P1SEL0
+#define CC_MOSI_PIN (1 << 6)
+#define CC_MOSI_OUT P1OUT
+#define CC_MOSI_DIR P1DIR
+#define CC_MOSI_SEL P1SEL0
 
 #define CC_CG0_OUT P1OUT
 #define CC_CG0_PIN (1 << 2)
@@ -75,14 +75,14 @@
 #define CC_XTAL_DIR PJDIR
 #define CC_XTAL_PIN (1 << 0)
 
-// tc77 pins
+// tc77 pins, SPI is bitbanged
 #define TC_OUT P2OUT
 #define TC_DIR P2DIR
 #define TC_SIO_PIN (1 << 4)
 #define TC_CS_PIN (1 << 3)
 #define TC_SCK_PIN (1 << 7)
 
-// lsm6ds3 pins
+// lsm6ds3 pins, SPI on UA0
 #define LSM_INT1_OUT PJOUT
 #define LSM_INT1_DIR PJDIR
 #define LSM_INT1_SEL PJSEL0

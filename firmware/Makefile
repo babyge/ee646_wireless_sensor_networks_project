@@ -1,8 +1,8 @@
 # adapted from http://thedestitutedeveloper.blogspot.com/2014/07/msp430f5529-launchpad-project01.html
 
 TARGET	= sensor_node
-MCU	= msp430fr5969
-SOURCES	= main.c spi.c delay.c
+MCU	= msp430fr5739
+SOURCES	= main.c spi.c delay.c uart.c
 
 DEPEND = $(SOURCES:.c=.d)
 OBJECTS = $(SOURCES:.c=.o)

@@ -39,7 +39,7 @@
   )
 
   (setup
-    (last_trace_width 0.8)
+    (last_trace_width 0.16)
     (user_trace_width 0.2)
     (user_trace_width 0.36)
     (user_trace_width 0.4)
@@ -69,10 +69,11 @@
     (pad_size 1.524 1.524)
     (pad_drill 0.762)
     (pad_to_mask_clearance 0.2)
+    (pad_to_paste_clearance -0.035)
     (aux_axis_origin 0 0)
     (visible_elements FFFEFF7F)
     (pcbplotparams
-      (layerselection 0x010f0_80000007)
+      (layerselection 0x010f8_80000007)
       (usegerberextensions false)
       (excludeedgelayer true)
       (linewidth 0.100000)
@@ -2361,7 +2362,7 @@
   (gr_text GND (at 181.4 92 90) (layer F.SilkS) (tstamp 55EFDC06)
     (effects (font (size 0.6 0.6) (thickness 0.15)))
   )
-  (gr_text GND (at 167.25 111.25 360) (layer F.SilkS) (tstamp 55EFDA21)
+  (gr_text GND (at 167.25 111.25) (layer F.SilkS) (tstamp 55EFDA21)
     (effects (font (size 0.8 0.8) (thickness 0.15)))
   )
   (gr_text P1.1 (at 164.8 110.4 90) (layer F.SilkS) (tstamp 55EFDA20)

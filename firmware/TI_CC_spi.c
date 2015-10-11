@@ -2203,8 +2203,9 @@ void TI_CC_SPISetup(void)
 
   // Config bitbang pins
   TI_CC_SPI_BITBANG_PxOUT |= TI_CC_SPI_BITBANG_SIMO;
-  TI_CC_SPI_BITBANG_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK;
-  TI_CC_SPI_BITBANG_PxDIR |= TI_CC_SPI_BITBANG_SIMO | TI_CC_SPI_BITBANG_UCLK;
+  TI_CC_SPI_BITBANG_CLK_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK;
+  TI_CC_SPI_BITBANG_PxDIR |= TI_CC_SPI_BITBANG_SIMO;
+  TI_CC_SPI_BITBANG_CLK_PxOUT |= TI_CC_SPI_BITBANG_UCLK;
 }
 
 // Output eight-bit value using selected bit-bang pins
@@ -2220,10 +2221,10 @@ void TI_CC_SPI_bitbang_out(char value)
       TI_CC_SPI_BITBANG_PxOUT &= ~TI_CC_SPI_BITBANG_SIMO;// Set SIMO low...
     value = value << 1;                                  // Rotate bits
 
-    TI_CC_SPI_BITBANG_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK;  // Set clock low
-    TI_CC_SPI_BITBANG_PxOUT |= TI_CC_SPI_BITBANG_UCLK;   // Set clock high
+    TI_CC_SPI_BITBANG_CLK_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK;  // Set clock low
+    TI_CC_SPI_BITBANG_CLK_PxOUT |= TI_CC_SPI_BITBANG_UCLK;   // Set clock high
   }
-  TI_CC_SPI_BITBANG_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK;  // Set clock low
+  TI_CC_SPI_BITBANG_CLK_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK;  // Set clock low
 }
 
 // Input eight-bit value using selected bit-bang pins
@@ -2243,13 +2244,13 @@ char TI_CC_SPI_bitbang_in()
   x = 0;
   for(y=8;y>0;y--)
   {
-    TI_CC_SPI_BITBANG_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK;// Set clock low
-    TI_CC_SPI_BITBANG_PxOUT |= TI_CC_SPI_BITBANG_UCLK;// Set clock high
+    TI_CC_SPI_BITBANG_CLK_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK;// Set clock low
+    TI_CC_SPI_BITBANG_CLK_PxOUT |= TI_CC_SPI_BITBANG_UCLK;// Set clock high
 
     x = x << 1;                             // Make room for next bit
     x = x | ((TI_CC_SPI_BITBANG_PxIN & TI_CC_SPI_BITBANG_SOMI) >> shift);
   }                                         // Store next bit
-  TI_CC_SPI_BITBANG_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK; // Set clock low
+  TI_CC_SPI_BITBANG_CLK_PxOUT &= ~TI_CC_SPI_BITBANG_UCLK; // Set clock low
   return(x);
 }
 

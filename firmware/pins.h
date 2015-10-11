@@ -1,6 +1,6 @@
 #define LEDOUT PJOUT
 #define LEDDIR PJDIR
-#define LED1 (1 << 1)
+#define LED1 BIT1
 
 // uart pins
 #define UARTOUT P2OUT

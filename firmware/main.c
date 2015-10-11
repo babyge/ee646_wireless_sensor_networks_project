@@ -6,6 +6,8 @@
 #include "spi.h"
 #include "pins.h"
 #include "delay.h"
+#include "include.h"
+
 
 void init_clock(void)
 {
@@ -34,7 +36,7 @@ int main(void)
 
     for(;;) {
         LEDOUT ^= LED1;                      // Toggle P1.0 using exclusive-OR
-        delay_ms(1000);
+        delay_ms(100);
     }
 
     return 0;

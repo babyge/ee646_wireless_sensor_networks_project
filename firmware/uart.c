@@ -2,19 +2,7 @@
 #include <stdint.h>
 #include "pins.h"
 #include "uart.h"
-#include "intmacro.h"
 #include "delay.h"
-#include "isr_compat.h"
-
-uint8_t rx_buff[RXBUFFSIZE];
-uint8_t tx_buff[TXBUFFSIZE];
-
-volatile uint8_t rxiin;
-volatile uint8_t rxiout;
-volatile uint8_t txiin; 
-volatile uint8_t txiout;
-volatile uint8_t rxempty;
-volatile uint8_t txempty;
 
 void init_uart(void)
 {
@@ -28,19 +16,8 @@ void init_uart(void)
     UCA1BR1 = 6;
     UCA1BR0 = 130; // 9600 baud, no oversampling
 
-    //UCA1MCTL = 0;// UCBRS_3;
+    UCA1MCTL = 0;
     UCA1CTL1 &= ~(UCSWRST); //clear reset
-
-    UCA1IE |= UCTXIE | UCRXIE; // enable UART interrupts
-
-    rxiin = 0;
-    rxiout = 0;
-
-    txiin = 0;
-    txiout = 0;
-
-    rxempty = 1;
-    txempty = 1;
 }
 
 uint8_t uart_put(uint8_t c) {
@@ -71,18 +48,6 @@ uint8_t uart_put(uint8_t c) {
     return res;
 }
 
-uint16_t uart_tx_empty(void)
-{
-    return txempty;
-}
-
-uint16_t uart_rx_vol(void) {
-    if(rxiout > rxiin) {
-        return rxiin - rxiout + RXBUFFSIZE;
-    }
-    return rxiin - rxiout;
-}
-
 uint8_t uart_grab(void) {
     uint8_t c;
 
@@ -111,37 +76,4 @@ void uart_put16(uint16_t w)
 {
     uart_put(w & 0xFF);
     uart_put((w >> 8) & 0xFF);
-}
-
-ISR(USCI_A1, USCI_A1_ISR)
-{
-    uint8_t txflags = UCTXIFG & UCTXIE;
-    uint8_t rxflags = UCRXIFG & UCRXIE;
-    uint16_t t;
-
-    if(txflags & UCTXIFG) {
-        if(txiin != txiout) {
-            delay_ms(3);
-            UCA1TXBUF = tx_buff[txiout];
-            txiout = (txiout + 1) % TXBUFFSIZE;
-        }
-        else { 
-            txempty = 1;
-            UC1IFG &= ~UCA1TXIFG;
-        }
-    
-    }
-
-    if(rxflags & UCRXIFG) {
-        rxempty = 0;
-        t = (rxiin + 1) % RXBUFFSIZE;
-
-        if(t != rxiout) {
-            rx_buff[rxiin] = UCA1RXBUF;
-            rxiin = t;
-        }
-        else {
-            t = UCA1RXBUF; // read byte to clear interrupt flag
-        }
-    }
 }

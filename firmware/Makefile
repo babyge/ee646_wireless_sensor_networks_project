@@ -2,7 +2,9 @@
 
 TARGET	= sensor_node
 MCU	= msp430fr5739
-SOURCES	= main.c spi.c delay.c uart.c
+SOURCES	= main.c spi.c delay.c TI_CC_spi.c CC1100-CC2500.c
+PROG = rf2500 
+#rf2500 
 
 DEPEND = $(SOURCES:.c=.d)
 OBJECTS = $(SOURCES:.c=.o)
@@ -56,4 +58,4 @@ clean:
 	-$(RM) $(DEPEND)
 
 install: $(TARGET).elf
-	mspdebug tilib "prog $(TARGET).elf"
+	mspdebug $(PROG) "prog $(TARGET).elf"

@@ -43,6 +43,7 @@
 
 
 #include "include.h"
+#include "pins.h"
 #include "TI_CC_CC1100-CC2500.h"
 
 #define TI_CC_RF_FREQ  915 // 315, 433, 868, 915, 2400
@@ -505,9 +506,9 @@ char RFReceivePacket(char *rxBuffer, char *length)
 {
   char status[2];
   char pktLen;
-
   if ((TI_CC_SPIReadStatus(TI_CCxxx0_RXBYTES) & TI_CCxxx0_NUM_RXBYTES))
   {
+    LEDOUT |= LED1;
     pktLen = TI_CC_SPIReadReg(TI_CCxxx0_RXFIFO); // Read length byte
 
     if (pktLen <= *length)                  // If pktLen size <= rxBuffer

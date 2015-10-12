@@ -37,10 +37,14 @@
 #define SWDEBUG_PIN (1 << 5)
 #define SWDEBUG_OUT P3OUT
 #define SWDEBUG_DIR P3DIR
+#define SWDEBUG_REN P3REN
+#define SWDEBUG_IN P3IN
 
 #define SWAUX0_PIN (1 << 2)
 #define SWAUX0_OUT PJOUT
 #define SWAUX0_DIR PJDIR
+#define SWAUX0_REN PJREN
+#define SWAUX0_IN PJIN
 
 #define LED0_PIN (1 << 1)
 #define LED0_OUT PJOUT

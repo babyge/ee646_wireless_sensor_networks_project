@@ -93,10 +93,10 @@ void main (void)
 
 // The ISR assumes the interrupt came from a press of one of the four buttons
 // and therefore does not check the other four inputs.
-#pragma vector=PORT1_VECTOR
-__interrupt void port1_ISR (void)
+#pragma vector=PORT3_VECTOR
+__interrupt void port3_ISR (void)
 {
-  if(P1IFG & (TI_CC_SW1 + TI_CC_SW2))
+  if(P3IFG & (TI_CC_SW1 + TI_CC_SW2))
   {
     // Build packet
     txBuffer[0] = 2;                           // Packet length
@@ -105,18 +105,20 @@ __interrupt void port1_ISR (void)
 
     RFSendPacket(txBuffer, 3);                 // Send value over RF
   }
-  else if(P1IFG & TI_CC_GDO0_PIN)
+  else if(P3IFG & TI_CC_GDO0_PIN)
   {
     char len=2;                               // Len of pkt to be RXed (only addr
                                             // plus data; size byte not incl b/c
                                             // stripped away within RX function)
     if (RFReceivePacket(rxBuffer,&len))       // Fetch packet from CCxxxx
-      TI_CC_LED_PxOUT ^= rxBuffer[1];         // Toggle LEDs according to pkt data
+      TI_CC_LED_PxOUT |= LED0;//rxBuffer[1];         // Toggle LEDs according to pkt data
   }
 //  P1IFG &= ~(TI_CC_SW1+TI_CC_SW2+TI_CC_SW3+TI_CC_SW4);//Clr flag that caused int
 
   TI_CC_SW_PxIFG &= ~(TI_CC_SW1+TI_CC_SW2); // Clr flag that caused int
   TI_CC_GDO0_PxIFG &= ~TI_CC_GDO0_PIN;      // After pkt TX, this flag is set.
+
+  TI_CC_LED_PxOUT |= LED0;//rxBuffer[1];         // Toggle LEDs according to pkt data
 }                                           // Clear it.
 
 
@@ -130,7 +132,7 @@ __interrupt void port2_ISR (void)
                                             // plus data; size byte not incl b/c
                                             // stripped away within RX function)
   if (RFReceivePacket(rxBuffer,&len))       // Fetch packet from CCxxxx
-    TI_CC_LED_PxOUT ^= rxBuffer[1];         // Toggle LEDs according to pkt data
+    TI_CC_LED_PxOUT ^= LED0; //rxBuffer[1];         // Toggle LEDs according to pkt data
 
   TI_CC_GDO0_PxIFG &= ~TI_CC_GDO0_PIN;                 // Clear flag
 }

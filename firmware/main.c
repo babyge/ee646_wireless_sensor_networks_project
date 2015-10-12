@@ -20,7 +20,21 @@ unsigned int i;
 
 void init_clock(void)
 {
-    ;
+    // configure dco to max, aclk to crystal
+    // xt1 is low-frequency mode, external 10 pf caps
+    CSCTL0_H = 0xA5;
+    CSCTL1 |= DCOFSEL0 + DCOFSEL1; 
+    CSCTL2 = SELA_0 + SELS_3 + SELM_3;        // set ACLK = XT1; MCLK = DCO
+    CSCTL3 = DIVA_0 + DIVS_0 + DIVM_0;        // set all dividers 
+    CSCTL4 |= XT1DRIVE_0; 
+    CSCTL4 &= ~XT1OFF;
+    
+    do {
+        CSCTL5 &= ~XT1OFFG; 
+        SFRIFG1 &= ~OFIFG; 
+    } while (SFRIFG1&OFIFG);
+    
+    CSCTL0_H = 0x01;
 }
 
 void init_watchdog(void)

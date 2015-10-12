@@ -7,14 +7,15 @@
 void init_uart(void)
 {
     UCA1CTL1 = UCSWRST; // set UCSWRST (recommended before initializing USCI)
+
     UARTSEL |= RXD | TXD; // set UART pins to UART mode
 
     UCA1CTL1 |= UCSSEL1; // SMCLK clock select
     UCA1CTL0 = 0; // 8 bit, 1 stop, no parity, async
 
     // set baud rate SMCLK / (UCA1BR0 + 256 * UCA1BR1)
-    UCA1BR1 = 6;
-    UCA1BR0 = 130; // 9600 baud, no oversampling
+    UCA1BR1 = 13;
+    UCA1BR0 = 0; // 2400 baud, no oversampling using 32.768 kHz crystal
 
     UCA1MCTL = 0;
     UCA1CTL1 &= ~(UCSWRST); //clear reset
